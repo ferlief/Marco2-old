@@ -27,6 +27,7 @@ public class Mesa extends JFrame
 	Tabuleiro tab;
 	DadosPanel dp;
 	
+	
 	public int cartasTiradas[];
 	public int cartasTiradasContador;
 
@@ -50,8 +51,9 @@ public class Mesa extends JFrame
 		Container c = getContentPane();
 		c.setBackground(Color.white);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		tab = new Tabuleiro();
+		tab = new Tabuleiro(numJogadores);
 		dp = new DadosPanel(tab.jogadores);
+		
 		
 		jogadoresLabel = new JLabel[6];
 		saldoLabel = new JLabel[6];
@@ -158,6 +160,11 @@ public class Mesa extends JFrame
 		JMenuBar MenuBar = new JMenuBar();
         setJMenuBar(MenuBar);
         
+        /* Parei aqui */
+		JTextArea outPutArea = new JTextArea ("Whiskas sachê", 800, 700 );
+	    outPutArea.setText("Whiskas Sachê");
+       
+        
 		for(int n = 0; n < 6; n++)
 		{
 			String caminho = "img/Dice"+(n+1)+".png";
@@ -173,6 +180,7 @@ public class Mesa extends JFrame
 		tab.setBounds(100, 100, 600, 600);
 		dp.setBounds(20, 700, 150, 100);
 		add(tab);
+		
 		//add(dp);
 	}
 	
@@ -282,7 +290,9 @@ public class Mesa extends JFrame
 			tab.jogadores[tab.jogadorAtual].move(r);
 			tab.jogadores[tab.jogadorAtual].territorioAtual = cartaLugar[tab.jogadores[tab.jogadorAtual].pos];
 			cartaAtual = null;
+			
 
+		    
 			switch(tab.jogadores[tab.jogadorAtual].territorioAtual.tipo)
 			{
 			case cartaSorte: 

@@ -10,8 +10,10 @@ public class Tabuleiro extends JPanel{
 	Image tab;
 	Jogador[] jogadores;
 	int jogadorAtual;
+	int numJogs;
 	Territorio[] territorios;
-	public Tabuleiro(){
+	
+	public Tabuleiro(int num){
 		Toolkit tk=Toolkit.getDefaultToolkit();
 		Dimension screenSize=tk.getScreenSize();
 		int sl = (screenSize.width)/2;
@@ -41,12 +43,15 @@ public class Tabuleiro extends JPanel{
 		}
 		catch(IOException e){
 		};
+		
+		numJogs = num;
 	}
+	
 	public void paintComponent(Graphics g)
 	{ 		
 		super.paintComponent(g);
 		g.drawImage(tab, 0, 0, 600, 600, null);
-		for(int i = 0; i < jogadores.length; i++)
+		for(int i = 0; i < numJogs; i++)
 		{
 			if(jogadores[i]!=null && jogadores[i].img!=null)
 			{
